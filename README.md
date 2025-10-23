@@ -1,25 +1,26 @@
-# AO-Seeds-Sim: Accretion–Overflow (AO) Model Simulator
+# AO Seeds Sim: SEQ Outbursts Extension
 
-[![Zenodo DOI](https://zenodo.org/badge/latestdoi/1234567.svg)](https://doi.org/10.5281/zenodo.1234567) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+Repo for "SEQ Outbursts in the AO Model: Predictions for Recycling Cosmology" (Zenodo DOI: 10.5281/zenodo.17421649; v2 of original AO Model DOI: 10.5281/zenodo.17417985).
 
-## Overview
-Welcome to **AO-Seeds-Sim**, the official open-source simulation repository for the **Accretion–Overflow (AO) Model**—a groundbreaking framework redefining dark matter and dark energy as emergent properties of supercompact "cosmic seeds." 
+## Original AO Sims (Main Branch)
+- Run `python main.py` for base funnel density/M(<r) (Appendix A of original paper).
+- Outputs: figs/fig1_density.png, fig2_mass.png.
 
-This repo implements the full mathematical backbone of the AO model, including exponential density profiles, enclosed mass calculations, rotation curve overlays, and gravitational lensing predictions. It's the computational engine behind the peer-reviewed preprint *[The Accretion–Overflow (AO) Model: Cosmic Seeds as a Defined Alternative to Dark Matter and Energy](https://zenodo.org/doi/10.5281/zenodo.1234567)* (Swygert, 2025).
+## SEQ Outbursts Extension (seq_outbursts Branch)
+- **Quick Run for Manuscript Outputs**:
+  1. Install deps: `pip install -r requirements.txt`
+  2. Run sim: `python seq_sweep.py`
+     - Generates `seq_sweep.png` (Fig 4).
+     - Prints: P_jet(0.10): 1.99e+44 erg s^{-1}; ε(0.70): 7.00e-04 (matches Table 1).
+- **Monte Carlo Uncertainty**: Built-in (σ_ε < 5% from n_s ±20%).
+- **Figs**: seq_sweep.png (left: P_jet vs SEQ; right: ε vs SEQ with bands/thresholds).
 
-Inspired by the **yin-yang emblem** ☯️—our proprietary symbol for cosmic duality—these tools simulate the harmonious balance between inward compaction (yin: density gradients) and outward overflow (yang: jet ejections), turning placeholders like dark matter into testable physics.
+## Outputs Match Manuscript
+- Baseline Ω_AO ≈ 1 at SEQ=0.70.
+- Thresholds: Outburst at 0.40, halo at 0.70.
 
-### Key Features
-- **Fiducial Seed Simulation**: Model a \(10^6 M_\odot\) seed with 10 km core, \(\rho_0 \sim 7.91 \times 10^{22}\) kg m$^{-3}$ (\(\eta \approx 2.83 \times 10^5\)).
-- **Analytic + Numeric Verification**: Exact integrals for \(M(<r)\) vs. SciPy quadrature (precision: <0.03% error).
-- **Figure Generation**: Auto-produces three core plots (density taper, mass cumulative, AO vs. NFW rotation curves) matching the paper.
-- **Parameter Sweeps**: CLI for custom \(M\), \(a\), ISM densities—scale from planetary embryos to galactic halos.
-- **Test Suite**: Validates against SPARC data; residuals <5% for \(\eta > 10^4\).
-- **Extensibility**: Hooks for N-body (Gadget-4 integration) and DE coupling (\(w = -1 + \epsilon\)).
+## Branches
+- main: Original AO sims.
+- seq_outbursts: This extension (v1.0).
 
-## Quick Start
-### Installation
-```bash
-git clone https://github.com/rokkinroll/AO-Seeds-Sim.git
-cd AO-Seeds-Sim
-pip install -r requirements.txt  # numpy, scipy, matplotlib, astropy
+License: CC-BY 4.0. Questions: @rokkinroll on X. Emblem: yin_yang_seed.png (visuals).
